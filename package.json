@@ -1,0 +1,52 @@
+{
+  "name": "excel",
+  "version": "1.0.0",
+  "description": "Just a way to train some skills",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=development webpack serve",
+    "build": "cross-env NODE_ENV=production npm run generate-docs & webpack --mode production",
+    "generate-docs": "jsdoc src -c jsdoc.config.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Veronika-dev/excel-js.git"
+  },
+  "keywords": [
+    "js",
+    "excel"
+  ],
+  "author": "Veronika <vkopytova12@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Veronika-dev/excel-js/issues"
+  },
+  "homepage": "https://github.com/Veronika-dev/excel-js#readme",
+  "private": true,
+  "browserslist": [
+    "> 0.25%, not dead"
+  ],
+  "devDependencies": {
+    "@babel/core": "~7.18.9",
+    "@babel/eslint-parser": "~7.18.9",
+    "@babel/preset-env": "~7.18.9",
+    "babel-loader": "~8.2.5",
+    "clean-webpack-plugin": "~4.0.0",
+    "copy-webpack-plugin": "~11.0.0",
+    "cross-env": "~7.0.3",
+    "css-loader": "~6.7.1",
+    "eslint": "~8.20.0",
+    "eslint-config-google": "~0.14.0",
+    "eslint-webpack-plugin": "~3.2.0",
+    "html-webpack-plugin": "~5.5.0",
+    "jsdoc": "~3.6.11",
+    "mini-css-extract-plugin": "~2.6.1",
+    "open": "~8.4.0",
+    "sass": "~1.54.0",
+    "sass-loader": "~13.0.2",
+    "webpack": "~5.74.0",
+    "webpack-cli": "~4.10.0",
+    "webpack-dev-server": "~4.9.3"
+  }
+}
