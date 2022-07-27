@@ -1,0 +1,11 @@
+.excel__toolbar {
+  position: absolute;
+  top: $headerHeight;
+  left: 0;
+  width: 100%;
+  height: $headerHeight;
+  border-top: 1px solid $borderCommonColor;
+  border-bottom: 1px solid $borderCommonColor;
+  padding: 8px 10px;
+  display: flex;
+}
