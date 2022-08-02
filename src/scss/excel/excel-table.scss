@@ -1,3 +1,17 @@
+$tableHeadersColor: #a9a9a9;
+@mixin resizeTable {
+  background: none;
+  position: absolute;
+  transition: background-color .15s ease-in;
+  &:hover {
+    background: rgba($mainColor, .5);
+  }
+}
+@mixin resizeTemp {
+  position: absolute;
+  background: rgba($mainColor, .3);
+  z-index: 3;
+}
 .excel__table {
   $top: $headerHeight + $toolbarHeight + $formulaHeight;
   position: absolute;
@@ -12,6 +26,22 @@
     flex-direction: row;
     min-height: 20px;
     height: $infoRowHeight;
+    &--resize {
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 5px;
+      cursor: row-resize;
+      @include resizeTable;
+    }
+    &--resize-temp {
+      top: 0;
+      left: 0;
+      right: 0;
+      transform: translateY(-2px);
+      height: 2px;
+      @include resizeTemp;
+    }
   }
   &--info {
     display: flex;
@@ -22,6 +52,8 @@
     border: 1px solid $borderCommonColor;
     background: #f8f9fa;
     border-top: none;
+    color: $tableHeadersColor;
+    position: relative;
   }
   &--data {
     display: flex;
@@ -35,7 +67,25 @@
     width: $cellWidth;
     border-bottom: 1px solid $borderCommonColor;
     border-right: 1px solid $borderCommonColor;
-    color: #a9a9a9;
+    color: $tableHeadersColor;
+    position: relative;
+    user-select: none;
+    &--resize {
+      top: 0;
+      right: -2px;
+      bottom: 0;
+      width: 5px;
+      cursor: col-resize;
+      @include resizeTable;
+    }
+    &--resize-temp {
+      top: 0;
+      left: 0;
+      bottom: 0;
+      transform: translateX(-2px);
+      width: 2px;
+      @include resizeTemp;
+    }
   }
   &--cell {
     min-width: 40px;
