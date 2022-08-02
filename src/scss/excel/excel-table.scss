@@ -1,3 +1,4 @@
+$tableHeadersColor: #a9a9a9;
 .excel__table {
   $top: $headerHeight + $toolbarHeight + $formulaHeight;
   position: absolute;
@@ -22,6 +23,7 @@
     border: 1px solid $borderCommonColor;
     background: #f8f9fa;
     border-top: none;
+    color: $tableHeadersColor;
   }
   &--data {
     display: flex;
@@ -35,7 +37,7 @@
     width: $cellWidth;
     border-bottom: 1px solid $borderCommonColor;
     border-right: 1px solid $borderCommonColor;
-    color: #a9a9a9;
+    color: $tableHeadersColor;
   }
   &--cell {
     min-width: 40px;
