@@ -5,21 +5,26 @@ const CODES = {
 
 /**
  * Create a cell using HTML template
+ * @param {number} index Column index
  * @return {string}
  */
-function createCell() {
+function createCell(index) {
   return `
-    <div class="excel__table--cell" contenteditable="true"></div>
+    <div class="excel__table--cell" contenteditable="true" data-column-index="${index}"></div>
   `
 }
 
 /**
  * Create a column using HTML template
  * @param {string} colInfo Column information
+ * @param {number} index Column index
  * @return {string}
  */
-function createCol(colInfo) {
-  return `<div class="excel__table--column">${colInfo}</div>`
+function createCol(colInfo, index) {
+  return `<div class="excel__table--column" data-column-index="${index}">
+        ${colInfo}
+        <div class="excel__table--column--resize" data-resize="col"></div>
+    </div>`
 }
 
 /**
@@ -29,11 +34,23 @@ function createCol(colInfo) {
  * @return {string}
  */
 function createRow(rowData, rowInfo = '') {
+  const resizeContent = rowInfo ? '<div class="excel__table--row--resize" data-resize="row"></div>' : ''
   return `
-    <div class="excel__table--row">
-        <div class="excel__table--info">${rowInfo}</div>
-        <div class="excel__table--data">${rowData}</div> 
+    <div class="excel__table--row" data-row-index="${rowInfo || 0}">
+        <div class="excel__table--info">${rowInfo}${resizeContent}</div>
+        <div class="excel__table--data">${rowData}</div>
     </div>
+  `
+}
+
+/**
+ * Create resize lines
+ * @return {string} Template of resize lines
+ */
+function createResizeTemporary() {
+  return `
+     <div class="excel__table--row--resize-temp" id="row-resize"></div>
+     <div class="excel__table--column--resize-temp" id="col-resize"></div>
   `
 }
 
@@ -46,6 +63,8 @@ export function createTable(rows = 15) {
   const colsCount = CODES.Z - CODES.A
   const rowsArray = []
 
+  rowsArray.push(createResizeTemporary())
+
   const cols = new Array(colsCount + 1).fill('')
 
   const colsArray = cols
@@ -56,7 +75,7 @@ export function createTable(rows = 15) {
   rowsArray.push(createRow(colsArray))
 
   for (let i = 0; i < rows; i++) {
-    const colsCurrent = cols.map(createCell).join('')
+    const colsCurrent = cols.map((_, index) => createCell(index)).join('')
     rowsArray.push(createRow(colsCurrent, i + 1))
   }
 

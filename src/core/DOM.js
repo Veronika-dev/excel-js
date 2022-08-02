@@ -66,6 +66,64 @@ class DOM {
   off(eventType, callback) {
     this.$el.removeEventListener(eventType, callback)
   }
+
+  /**
+   * Get parent of an element
+   * @param {string} selector
+   * @return {*}
+   */
+  parent(selector) {
+    return $(this.$el.closest(selector))
+  }
+
+  /**
+   * Get coordinates
+   * @return {DOMRect}
+   */
+  coords() {
+    return this.$el.getBoundingClientRect()
+  }
+
+  /**
+   * Change styles of an element
+   * @param {Object} options
+   */
+  css(options = {}) {
+    Object.assign(this.$el.style, options)
+  }
+
+  /**
+   * Get dataset
+   * @return {Object}
+   */
+  get dataset() {
+    return this.$el.dataset
+  }
+
+  /**
+   * Get left scroll
+   * @return {number}
+   */
+  get scrollLeft() {
+    return this.$el.scrollLeft
+  }
+
+  /**
+   * Get top scroll
+   * @return {number}
+   */
+  get scrollTop() {
+    return this.$el.scrollTop
+  }
+
+  /**
+   * Query Selector
+   * @param {string} selector
+   * @return {NodeListOf<*>}
+   */
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector)
+  }
 }
 
 /**
